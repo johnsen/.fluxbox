@@ -44,7 +44,7 @@ Mod4 F8 :Tab 8
 Mod4 F9 :Tab 9
 
 # open a terminal
-Mod1 F1 :Exec xterm
+Mod4 Shift x :Exec xterm
 Mod4 Shift k :Exec konsole
 
 # open a dialog to run programs
@@ -67,6 +67,8 @@ Mod1 space :WindowMenu
 
 # exit fluxbox
 Mod4 Shift q :Exit
+Mod4 Shift r :Reconfigure
+Mod4 Shift s :Restart
 #Control Mod1 Delete :Exit
 
 # change to a specific workspace
@@ -125,7 +127,9 @@ Control Mod4 11 :TakeToWorkspace 11
 Control Mod4 12 :TakeToWorkspace 12
 
 #start system applications
-Mod4 p :Exec 0dmenu
+#Mod4 p :Exec 0dmenu
+Mod4 p :ExecCommand `dmenu_path | dmenu` && eval “exec $exe”
+
 Mod1 t :Exec thunar
 #Mod1 s :Exec konsole
 
@@ -135,7 +139,8 @@ Mod4 q :Exec qjackctl
 Mod4 a :Exec ardour2
 Mod4 h :Exec hydrogen
 Mod4 c :Exec patchage
-Mod4 m :Exec 0a2jmidid
+#Mod4 m :Exec 0a2jmidid
+Mod4 m :ExecCommand a2jmidid -e
 
 #Mod4 u :Exec thun
 #start desktop apps
