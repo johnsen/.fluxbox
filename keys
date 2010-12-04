@@ -172,16 +172,16 @@ Mod4 h :Exec hydrogen
 Mod4 c :Exec patchage
 #Mod4 m :Exec 0a2jmidid
 Mod4 m :ExecCommand a2jmidid -e
-
 #Mod4 u :Exec thun
 #start desktop apps
 Mod4 k :Exec konversation
 Mod4 t :Exec icedove
-Mod4 f :Exec iceweasel
+Mod4 f :ExecCommand java -jar /home/derick/linuxaudio/linuxsampler/Fantasia-0.9.jar 
+Mod4 i :Exec iceweasel
 Mod4 w :Exec kwrite
 Mod4 d :Exec dolphin
 Mod4 n :Exec wicd-client
-
+Mod4 l :Exec xterm +sm -hold -e linuxsampler
 #kill
 Mod4 Shift u :ExecCommand killall jackd
 
@@ -190,9 +190,9 @@ Mod4 Shift u :ExecCommand killall jackd
 #open terminal + commands
 Mod4 Shift w :Exec xterm -hold -e wmctrl -l &
 
-Mod4 Mod1 j :Exec xterm -hold -e jackd -d firewire
-Mod4 Mod1 k :Exec xterm -hold -e jackd -d firewire -p 128
-Mod4 Mod1 l :Exec xterm -hold -e jackd -d firewire -p 64
+Mod4 Mod1 j :Exec xterm +sm -hold -e jackd -d firewire
+Mod4 Mod1 k :Exec xterm +sm -hold -e jackd -d firewire -p 128
+Mod4 Mod1 l :Exec xterm +sm -hold -e jackd -d firewire -p 64
 
 #kill
 Mod4 Control k :ExecCommand killall jackd
