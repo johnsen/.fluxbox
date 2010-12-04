@@ -81,9 +81,6 @@ Mod4 Shift r :Reconfigure
 Mod4 Shift s :Restart
 #Control Mod1 Delete :Exit
 
-Mod4 Shift Delete :Exec xterm -e sudo shutdown -h now
-Mod4 Shift Escape :Exec xterm -e sudo reboot
-
 #showdesktop
 
 Mod4 Shift d :ShowDesktop 
@@ -99,7 +96,7 @@ Mod4 Shift e :Exec xterm -e sudo hal-disable-polling --enable-polling --device /
 
 
 #Suggestion: Disable the unused bluetooth interface with the following command:
-Mod4 Shift b :Exec xterm -e sudo hciconfig hci0 down
+Mod4 Shift b :Exec xterm -e sudo hciconfig hci0 down ; rmmod hci_usb
 #Bluetooth is a radio and consumes quite some power, and keeps USB busy as well.
 
 # change to a specific workspace
@@ -189,10 +186,6 @@ Mod4 Shift u :ExecCommand killall jackd
 
 #open terminal + commands
 Mod4 Shift w :Exec xterm -hold -e wmctrl -l &
-
-Mod4 Mod1 j :Exec xterm -hold -e jackd -d firewire
-Mod4 Mod1 k :Exec xterm -hold -e jackd -d firewire -p 128
-Mod4 Mod1 l :Exec xterm -hold -e jackd -d firewire -p 64
-
-#kill
-Mod4 Control k :ExecCommand killall jackd
+#Mod4 Shift j :Exec xterm -hold -e jackd -d firewire
+#Mod4 Shift k :Exec xterm -hold -e jackd -d firewire -p 128
+#Mod4 Shift l :Exec xterm -hold -e jackd -d firewire -p 64

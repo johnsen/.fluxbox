@@ -1,0 +1,12 @@
+[app] (name=fbrun)
+  [Position]	(CENTER)	{0 0}
+  [Layer]	{2}
+[end]
+[app] (name=xterm) (class=XTerm)
+  [Dimensions]	{460 345}
+[end]
+[app] (name=qjackctl) (class=Qjackctl) (role=qjackctlMainForm)
+[end]
+[app] (name=konsole) (class=Konsole) (role=MainWindow#1)
+  [Dimensions]	{582 425}
+[end]

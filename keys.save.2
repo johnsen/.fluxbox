@@ -44,8 +44,8 @@ Mod4 F8 :Tab 8
 Mod4 F9 :Tab 9
 
 # open a terminal
-Mod4 Shift x :ExecCommand xterm +sm
-Mod4 Shift t :Exec konsole
+Mod4 Shift x :Exec xterm
+Mod4 Shift k :Exec konsole
 
 # open a dialog to run programs
 Mod1 F2 :Exec fbrun
@@ -58,19 +58,9 @@ Mod1 F2 :Exec fbrun
 
 # current window commands
 Mod4 Shift c :Close
-Mod4 Shift z :KillWindow
-Mod4 Shift a :CloseAllWindows
-
-#move windows
-Mod4 Shift j :MoveLeft 10
-Mod4 Shift l :MoveRight 10
-Mod4 Shift m :MoveDown 10
-Mod4 Shift i :MoveUp 10
-
-Mod4 F9 :Minimize
-#Mod1 F10 :Maximize
-Mod4 space :Maximize
-Mod4 F11 :Fullscreen
+Mod1 F9 :Minimize
+Mod1 F10 :Maximize
+Mod1 F11 :Fullscreen
 
 # open the window menu
 Mod1 space :WindowMenu
@@ -80,27 +70,6 @@ Mod4 Shift q :Exit
 Mod4 Shift r :Reconfigure
 Mod4 Shift s :Restart
 #Control Mod1 Delete :Exit
-
-Mod4 Shift Delete :Exec xterm -e sudo shutdown -h now
-Mod4 Shift Escape :Exec xterm -e sudo reboot
-
-#showdesktop
-
-Mod4 Shift d :ShowDesktop 
-
-#cpuscaling on performance
-Mod4 Shift p :Exec xterm -e sudo cpufreq-set -g performance
-Mod4 Shift o :Exec xterm -e sudo cpufreq-set -g ondemand
-Mod4 Shift y :Exec xterm -e sudo cpufreq-set -g conservative
-
-#hal polling
-Mod4 Shift h :Exec xterm -e sudo hal-disable-polling --device /dev/scd0
-Mod4 Shift e :Exec xterm -e sudo hal-disable-polling --enable-polling --device /dev/scd
-
-
-#Suggestion: Disable the unused bluetooth interface with the following command:
-Mod4 Shift b :Exec xterm -e sudo hciconfig hci0 down
-#Bluetooth is a radio and consumes quite some power, and keeps USB busy as well.
 
 # change to a specific workspace
 Mod4 1 :Workspace 1
@@ -159,7 +128,7 @@ Control Mod4 12 :TakeToWorkspace 12
 
 #start system applications
 #Mod4 p :Exec 0dmenu
-Mod4 p :ExecCommand `dmenu_path | dmenu` && eval “exec $exe”
+Mod4 p :ExecCommand Mod1 t :Exec thunar
 
 Mod1 t :Exec thunar
 #Mod1 s :Exec konsole
@@ -182,17 +151,7 @@ Mod4 w :Exec kwrite
 Mod4 d :Exec dolphin
 Mod4 n :Exec wicd-client
 
-#kill
-Mod4 Shift u :ExecCommand killall jackd
 
+#showdesktop
 
-
-#open terminal + commands
-Mod4 Shift w :Exec xterm -hold -e wmctrl -l &
-
-Mod4 Mod1 j :Exec xterm -hold -e jackd -d firewire
-Mod4 Mod1 k :Exec xterm -hold -e jackd -d firewire -p 128
-Mod4 Mod1 l :Exec xterm -hold -e jackd -d firewire -p 64
-
-#kill
-Mod4 Control k :ExecCommand killall jackd
+Mod4 Shift d :ShowDesktop 
