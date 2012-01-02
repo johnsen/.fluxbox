@@ -1,3 +1,13 @@
+! fluxbox-update_configs added '(workspace=[current])' to (Next|Prev)(Window|Group)
+! check lines marked by 'FBCV13' if they are correctly updated
+!mouse actions added by fluxbox-update_configs
+OnTitlebar Mouse1 :MacroCmd {Focus} {Raise} {ActivateTab}
+!mouse actions added by fluxbox-update_configs
+OnTitlebar Move1 :StartMoving
+OnLeftGrip Move1 :StartResizing bottomleft
+OnRightGrip Move1 :StartResizing bottomright
+OnWindowBorder Move1 :StartMoving
+
 # click on the desktop to get menus
 OnDesktop Mouse1 :HideMenus
 OnDesktop Mouse2 :WorkspaceMenu
@@ -25,12 +35,12 @@ OnTitlebar Double Mouse1 :Shade
 OnTitlebar Mouse3 :WindowMenu
 
 # alt-tab
-Mod1 Tab :NextWindow {groups}
-Mod1 Shift Tab :PrevWindow {groups}
+Mod1 Tab :NextWindow {groups} (workspace=[current])  !! FBCV13 !!
+Mod1 Shift Tab :PrevWindow {groups} (workspace=[current])  !! FBCV13 !!
 
 # cycle through tabs in the current window
 Mod4 Tab :NextTab
-Mod4 Shift Tab :PrevTab
+Mod4 ` :PrevTab
 
 # go to a specific tab in the current window
 Mod4 F1 :Tab 1
@@ -62,15 +72,19 @@ Mod4 Shift z :KillWindow
 Mod4 Shift a :CloseAllWindows
 
 #move windows
-Mod4 Shift j :MoveLeft 10
-Mod4 Shift l :MoveRight 10
-Mod4 Shift m :MoveDown 10
-Mod4 Shift i :MoveUp 10
+#Mod4 Shift j :MoveLeft 10
+#Mod4 Shift l :MoveRight 10
+#Mod4 Shift m :MoveDown 10
+#Mod4 Shift i :MoveUp 10
+
+#Mod4 Shift m :ClientMenu
+OnDesktop Mod4 Mouse2 :clientmenu
 
 Mod4 F9 :Minimize
 #Mod1 F10 :Maximize
 Mod4 space :Maximize
 Mod4 F11 :Fullscreen
+Mod4 Control t :ToggleDecor
 
 # open the window menu
 Mod1 space :WindowMenu
@@ -81,22 +95,25 @@ Mod4 Shift r :Reconfigure
 Mod4 Shift s :Restart
 #Control Mod1 Delete :Exit
 
+Mod4 Shift Delete :Exec xterm -e su -s /home/derick/bin/./shutdown+backupcheck2
+Mod4 Shift Escape :Exec xterm -e su -s /home/derick/bin/./reboot+backupcheck2
+
 #showdesktop
 
 Mod4 Shift d :ShowDesktop 
 
 #cpuscaling on performance
-Mod4 Shift p :Exec xterm -e sudo cpufreq-set -g performance
-Mod4 Shift o :Exec xterm -e sudo cpufreq-set -g ondemand
-Mod4 Shift y :Exec xterm -e sudo cpufreq-set -g conservative
+Mod4 Shift p :Exec xterm -e su -c /home/derick/bin/./0cpufreq_performance
+Mod4 Shift o :Exec xterm -e su -c /home/derick/bin/./0cpufreq_ondemand
+Mod4 Shift y :Exec xterm -e su -c /home/derick/bin/./0cpufreq_conservative
 
 #hal polling
-Mod4 Shift h :Exec xterm -e sudo hal-disable-polling --device /dev/scd0
-Mod4 Shift e :Exec xterm -e sudo hal-disable-polling --enable-polling --device /dev/scd
+Mod4 Shift h :Exec xterm -e su -c hal-disable-polling --device /dev/scd0
+Mod4 Shift e :Exec xterm -e su -c hal-disable-polling --enable-polling --device /dev/scd
 
 
 #Suggestion: Disable the unused bluetooth interface with the following command:
-Mod4 Shift b :Exec xterm -e sudo hciconfig hci0 down ; rmmod hci_usb
+Mod4 Shift b :Exec xterm -e su -c hciconfig hci0 down
 #Bluetooth is a radio and consumes quite some power, and keeps USB busy as well.
 
 # change to a specific workspace
@@ -105,13 +122,13 @@ Mod4 2 :Workspace 2
 Mod4 3 :Workspace 3
 Mod4 4 :Workspace 4
 Mod4 5 :Workspace 5
-Mod4 6 :Workspace 6
-Mod4 7 :Workspace 7
-Mod4 8 :Workspace 8
-Mod4 9 :Workspace 9
-Mod4 10 :Workspace 10
-Mod4 11 :Workspace 11
-Mod4 12 :Workspace 12
+#Mod4 6 :Workspace 6
+#Mod4 7 :Workspace 7
+#Mod4 8 :Workspace 8
+#Mod4 9 :Workspace 9
+#Mod4 10 :Workspace 10
+#Mod4 11 :Workspace 11
+#Mod4 12 :Workspace 12
 
 # send the current window to a specific workspace
 Mod4 Shift 1 :SendToWorkspace 1
@@ -169,23 +186,32 @@ Mod4 h :Exec hydrogen
 Mod4 c :Exec patchage
 #Mod4 m :Exec 0a2jmidid
 Mod4 m :ExecCommand a2jmidid -e
-
 #Mod4 u :Exec thun
 #start desktop apps
 Mod4 k :Exec konversation
 Mod4 t :Exec icedove
-Mod4 f :Exec iceweasel
+Mod4 f :ExecCommand java -jar /home/derick/linuxaudio/linuxsampler/Fantasia-0.9.jar 
+Mod4 i :Exec iceweasel
 Mod4 w :Exec kwrite
 Mod4 d :Exec dolphin
 Mod4 n :Exec wicd-client
-
+Mod4 l :Exec xterm +sm -hold -e linuxsampler --instruments-db-location /home/derick/linuxaudio/linuxsampler/dericks_instruments.db 
 #kill
-Mod4 Shift u :ExecCommand killall jackd
-
+Mod4 Mod1 x :ExecCommand killall jackd
+Mod4 Mod1 p :Exec 0pianoteq
 
 
 #open terminal + commands
 Mod4 Shift w :Exec xterm -hold -e wmctrl -l &
-#Mod4 Shift j :Exec xterm -hold -e jackd -d firewire
-#Mod4 Shift k :Exec xterm -hold -e jackd -d firewire -p 128
-#Mod4 Shift l :Exec xterm -hold -e jackd -d firewire -p 64
+
+Mod4 Mod1 j :Exec xterm +sm -hold -e jackd -d firewire
+Mod4 Mod1 k :Exec xterm +sm -hold -e jackd -d firewire -p 128
+Mod4 Mod1 l :Exec xterm +sm -hold -e jackd -d firewire -p 64
+
+#kill
+Mod4 Control k :ExecCommand killall jackd
+
+
+
+
+

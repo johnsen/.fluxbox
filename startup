@@ -14,8 +14,10 @@ xmodmap "/home/derick/.Xmodmap"
 # wmnd &
 # wmsmixer -w &
 # idesk &
-
+xrandr -s "1440x900" &
+nitrogen --restore &
 #conky &
+nm-applet &
 
 # And last but not least we start fluxbox.
 # Because it is the last app you have to run it with ''exec'' before it.

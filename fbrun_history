@@ -2,7 +2,8 @@ VirtualBox
 shutter
 icew
 iceweasel
-konversation
+konvekwrite
+
 gnome-terminal
 ffado-mixer
 qjackctl
@@ -32,3 +33,5 @@ reportbug
 cedo
 qsynth
 conky
+oom2
+kwrite
